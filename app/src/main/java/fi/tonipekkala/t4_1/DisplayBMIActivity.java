@@ -26,7 +26,7 @@ public class DisplayBMIActivity extends AppCompatActivity {
         updateUI();
     }
 
-    //kommentti
+    //kommentti i
     public void laskeBMI(View view){
         pituus = tvi.getText().toString();
         paino = tva.getText().toString();
