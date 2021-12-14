@@ -1,26 +1,29 @@
 package fi.tonipekkala.t4_1;
 
+import android.view.View;
+
 public class BMIClass {
-    private float pituus, paino, bmi;
+    private double pituus, paino, bmi;
 
 
 
-    public BMIClass(float pituus, float paino) {
+    public BMIClass(double pituus, double paino) {
         this.pituus = pituus;
         this.paino = paino;
     }
 
-    public float getPituus() {
+    public double getPituus() {
         return pituus;
     }
 
-    public float getPaino() {
+    public double getPaino() {
         return paino;
     }
 
-    public float getBmi(){
-        bmi = (paino/(pituus * pituus))*10000;
+    public double getBmi(){
+        bmi = (paino / pituus / pituus) * 10000;
         return bmi;
     }
+
 }
 

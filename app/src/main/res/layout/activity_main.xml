@@ -6,15 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
+    <androidx.appcompat.widget.AppCompatButton
+
+    android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="switchBMI"
-        android:text="Button"
+        android:text="@string/SwitchBMI"
+        android:background="@drawable/button_test"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.06999999" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

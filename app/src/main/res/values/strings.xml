@@ -5,10 +5,17 @@
     <string name="send_ika">Anna ikä</string>
     <string name="send_name">What is your name</string>
     <string name="send_age">How old are you?</string>
-    <string name="AnnaPituus">Pituus (cm)</string>
+    <string name="AnnaPituus">Height (in cm)</string>
     <string name="bmi_pituus">pituus1</string>
-    <string name="AnnaPaino">Paino (kg)</string>
+    <string name="AnnaPaino">Weight (in kg)</string>
     <string name="bmi_painoteksti">bmi_painoteksti</string>
     <string name="textvalue" />
     <string name="bmi_button">Check your BMI</string>
+    <string name="SwitchBMI">BMI Calculator</string>
+    <string name="sukupuoli_mies">Mies</string>
+    <string name="sukupuoli_nainen">Nainen</string>
+    <string name="gender">What\'s your gender?</string>
+    <string name="weight_hint"> How much do you weigh..</string>
+    <string name="height_hint"> How tall are you..</string>
+    <string name="calculate_bmi">BMI</string>
 </resources>
