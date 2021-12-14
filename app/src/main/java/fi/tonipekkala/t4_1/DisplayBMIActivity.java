@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import android.view.View;
 
+import java.text.DecimalFormat;
+
 public class DisplayBMIActivity extends AppCompatActivity {
 
     private BMIClass luokka;
@@ -34,7 +36,10 @@ public class DisplayBMIActivity extends AppCompatActivity {
             double ppituus = Double.parseDouble(pituus);
             double ppaino = Double.parseDouble(paino);
             luokka = new BMIClass(ppaino, ppituus);
-            asetaTeksti = "Your BMI is: " + Double.toString(luokka.getBmi());
+
+            DecimalFormat df = new DecimalFormat("0.00");
+            asetaTeksti = "Your BMI is: " + df.format(luokka.getBmi());
+
             if(luokka.getBmi() > 0 && luokka.getBmi() <= 14.9){
                 tv.setTextColor(this.getResources().getColor(R.color.red));
                 asetaTeksti += "\nUnderweight (Severe thinness)\t";
