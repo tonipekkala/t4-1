@@ -12,4 +12,7 @@
     <color name="yellow">#FFF300</color>
     <color name="lightgreen">#A7F615</color>
     <color name="green">#44E100</color>
+    <color name="lightblue">#00FFB7</color>
+    <color name="lighterblue">#00F7FF</color>
+    <color name="darkred">#630000</color>
 </resources>
