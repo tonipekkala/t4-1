@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author George Chirikov
  * @version 14.12.2021
  */
-public class Drink extends AppCompatActivity {
+public class Drink {
 
     /**
      * @param vol juoman tilavuus (volume)

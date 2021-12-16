@@ -1,6 +1,8 @@
 package fi.tonipekkala.t4_1;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -15,7 +17,8 @@ import android.widget.TextView;
 public class DrinkActivity extends AppCompatActivity {
 
     /**
-     *Tarvittavien muuttujien luominen
+     * Tarvittavien muuttujien luominen
+     *
      * @param TextView muuttujat joihin määritellään UI elementit
      * @param mass käyttäjän syöttämä paino (Kg)
      * @param k laskukaavassa käytettävä kerroin, joka riippuu sukupuolesta
@@ -25,7 +28,7 @@ public class DrinkActivity extends AppCompatActivity {
      * @param drink luokan "Drink" olio
      * @param result laskettu alkoholin pitoisuus promilleissa
      */
-    private TextView tv, tv2, summary, tvm, tvh, tvq1 , tvq2, tvq3 , tvq4, tvq5 , tvq6, tvq7 , tvq8;
+    private TextView tv, tv2, summary, tvm, tvh, tvq1, tvq2, tvq3, tvq4, tvq5, tvq6, tvq7, tvq8;
     private int mass;
     private double k;
     private int q1, q2, q3, q4, q5, q6, q7, q8;
@@ -41,6 +44,7 @@ public class DrinkActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink);
+        Intent intent = getIntent();
         this.tv = findViewById(R.id.result);
         this.tv2 = findViewById(R.id.result2);
         this.summary = findViewById(R.id.sum);
@@ -73,8 +77,8 @@ public class DrinkActivity extends AppCompatActivity {
      * Päivittää syöttämien juomien määrän
      * buttonReset asettaa muuttujat ja UI elementit alku arvoihin
      */
-    public void onButtonPressed(View v) {
-        switch (v.getId()) {
+    public void onButtonPressed(View view) {
+        switch (view.getId()) {
             case R.id.button1:
                 drink.drink2833();
                 this.q1++;
@@ -144,12 +148,13 @@ public class DrinkActivity extends AppCompatActivity {
 
     /**
      * Tarkistaa painon ja ajan syöttökenttien arvot (täytyy olla luku)
+     *
      * @return true jos syötetty arvo kelvollinen tai false jos syötetty arvo virheellinen
      */
     public static boolean ifNumber(String string) {
         float floatVal;
 
-        if(string == null || string.equals("")) {
+        if (string == null || string.equals("")) {
             return false;
         }
 
@@ -164,11 +169,11 @@ public class DrinkActivity extends AppCompatActivity {
     /**
      * Asettaa muuttujalle "k" arvon riippuen kumpi radioButton on painettu
      */
-    public void onRbuttonPressed1(View v){
+    public void onRbuttonPressed1(View v) {
         this.k = 0.75;
     }
 
-    public void onRbuttonPressed2(View v){
+    public void onRbuttonPressed2(View v) {
         this.k = 0.66;
     }
 
@@ -181,39 +186,37 @@ public class DrinkActivity extends AppCompatActivity {
      * kutsuu update() funktion
      * promillet = (juotu 100% alkoholi - poltettu alkoholi juomisen aikana) / (kerroin k * paino)
      * Alkoholi hajoaa kehossa 0.1 g/h/Kg esim. 80 Kg polttaa tunnissa 8 g ja viidessä 40 g
+     *
      * @return result eli promillet ja sob eli missä ajassa alkoholi poistuu kehosta
      */
-    public void alcCalc(View view){
+    public void alcCalc(View view) {
 
-        if(!ifNumber(this.tvm.getText().toString())){
+        if (!ifNumber(this.tvm.getText().toString())) {
             this.tv.setText("Enter valid values");
             this.tv2.setText("");
             this.summary.setText("");
-        }
-        else if(!ifNumber(this.tvh.getText().toString())){
+        } else if (!ifNumber(this.tvh.getText().toString())) {
             this.tv.setText("Enter valid values");
             this.tv2.setText("");
             this.summary.setText("");
-        }
-        else if(k == 0){
+        } else if (k == 0) {
             this.tv.setText("Select gender");
             this.tv2.setText("");
             this.summary.setText("");
-        }
-        else{
+        } else {
 
             this.mass = Integer.parseInt(this.tvm.getText().toString());
             this.h = Integer.parseInt(this.tvh.getText().toString());
 
             result = (drink.getPureAlc() - h * mass * 0.1) / (k * mass);
 
-            if(result < 0){
+            if (result < 0) {
                 result = 0;
             }
 
-            sob = (drink.getPureAlc() - h * mass * 0.1)/(mass * 0.1);
+            sob = (drink.getPureAlc() - h * mass * 0.1) / (mass * 0.1);
 
-            if(sob < 0){
+            if (sob < 0) {
                 sob = 0;
             }
 
@@ -221,30 +224,26 @@ public class DrinkActivity extends AppCompatActivity {
         }
     }
 
+
     /**
      * Asettaa alcCalc() funktion tuottamat tulokset tekstikenttiin
      * String.format leikkaa ylimääräset desimaalit pois (rajoitettu yhteen desimaaliin)
      */
-    public void update(){
+    public void update() {
         this.tv.setText((String.format("Your blood alcohol consentration is " + "%.1f", result) + " ppt"));
         this.tv2.setText(String.format("You will be souber after " + "%.1f", sob) + " hours");
 
-        if(result < 0.5 && result > 0.1){
+        if (result < 0.5 && result > 0.1) {
             this.summary.setText("You are having fun");
-        }
-        else if(result >= 0.5 && result < 1){
+        } else if (result >= 0.5 && result < 1) {
             this.summary.setText("Illegal to drive");
-        }
-        else if(result >= 1 && result < 3){
+        } else if (result >= 1 && result < 3) {
             this.summary.setText("Walking becomes harder");
-        }
-        else if(result >= 3 && result < 5){
+        } else if (result >= 3 && result < 5) {
             this.summary.setText("Get some help :/");
-        }
-        else if(result >= 5 ){
+        } else if (result >= 5) {
             this.summary.setText("Lethal dose");
-        }
-        else{
+        } else {
 
         }
     }
