@@ -187,7 +187,7 @@ public class DrinkActivity extends AppCompatActivity {
      * promillet = (juotu 100% alkoholi - poltettu alkoholi juomisen aikana) / (kerroin k * paino)
      * Alkoholi hajoaa kehossa 0.1 g/h/Kg esim. 80 Kg polttaa tunnissa 8 g ja viidessä 40 g
      *
-     * @return result eli promillet ja sob eli missä ajassa alkoholi poistuu kehosta
+     * eli promillet ja sob eli missä ajassa alkoholi poistuu kehosta
      */
     public void alcCalc(View view) {
 

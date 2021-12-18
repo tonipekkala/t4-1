@@ -10,6 +10,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Luokassa  tallennetaan käyttäjän syöttämät arvot
+ * @author Toni Pekkala
+ * @version 18.12.2021
+ */
+
 public class SettingsActivity extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -24,6 +30,10 @@ public class SettingsActivity extends AppCompatActivity {
     TextView tvn, tvh, tvw;
     Moodi moodi;
 
+    /**
+     * onCreate määrittää ja alustaa muuttujien arvot
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +59,10 @@ public class SettingsActivity extends AppCompatActivity {
             this.btm.setChecked(true);
     }
 
+    /**
+     *  Metodi, jossa katsotaan kumpaa radionappia ollaan painettu
+     *
+     */
     public void radioButtonClicked(View v) {
         if (!((RadioButton) v).isChecked())
             return;
@@ -66,7 +80,10 @@ public class SettingsActivity extends AppCompatActivity {
         preferences.setGender(returnGender());
     }
 
-
+    /**
+     *
+     * @return palauttaa sukupuolen
+     */
     public String returnGender(){
         switch (moodi) {
             case male:
@@ -77,6 +94,10 @@ public class SettingsActivity extends AppCompatActivity {
         return "3rd gender";
     }
 
+    /**
+     * Tallennetaan tiedot
+     *
+     */
     public void saveButtonPressed(View v){
 
         preferences.setName(tvn.getText().toString());
@@ -88,7 +109,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    // Tarkistetaan onko syötetty String numero vai ei
+    /**
+     * Metodissa tarkistetaan onko syötetty arvo numero vai ei
+     * @param string luettava arvo
+     * @return  palauttaa true tai false vastauksen perusteella
+     */
     public static boolean onkoNumero(String string) {
         float floatVal;
 

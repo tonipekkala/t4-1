@@ -12,6 +12,11 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
+/**
+ * Pääohjelma, joka näyttää käyttäjän tallentamat tiedot, ja voidaan siirtyä eri aktiviteetteihin
+ * @author Toni Pekkala
+ * @version 18.12.2021
+ */
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
@@ -19,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     TextView tvn;
     BMIClass bmi;
 
+    /**
+     * onCreatessa määritellään muuttujat ja asetetaan omat tiedot, mikäli muuttujissa on jotkin arvot
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,20 +48,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Nappi, jossa vaihdetaan BMI-aktiviteettiin
+    /**
+     * Metodi, jossa vaihdetaan BMI-aktiviteettiin
+     */
+
     public void switchBMI(View view) {
         Intent intent = new Intent(this, DisplayBMIActivity.class);
 
         startActivity(intent);
     }
 
-    //Nappi, jolla vaihdetaan asetuksiin
+    /**
+     *
+     * Metodi, jota kutsuessa vaihdetaan asetuksiin
+     */
     public void switchSettings(View view){
         Intent intent = new Intent(this, SettingsActivity.class);
 
         startActivity(intent);
     }
 
+    /**
+     *
+     * Metodi, jossa vaihdetaan alkoholilaskuriin
+     */
     public void switchAlcCalc(View view){
         Intent intent = new Intent(this, DrinkActivity.class);
 

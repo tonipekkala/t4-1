@@ -10,15 +10,25 @@ import android.view.View;
 
 import java.text.DecimalFormat;
 
+/**
+ * BMI-laskuri
+ * @author Toni Pekkala
+ * @version 18.12.2021
+ */
 public class DisplayBMIActivity extends AppCompatActivity {
 
-    // Alustetaan muuttujat
+    /**
+     * Alustetaan muuttujat
+     */
     private BMIClass luokka;
     private String pituus, paino, bmi, asetaTeksti = "";
     private TextView tvi, tva, tv;
 
 
-    //ohjelman luodessa asetetaan näkymä ja etsitään id:t xml tiedostosta
+    /**
+     *
+     * onCreatessa asetetaan näkymä BMI-aktiviteettiin xml:stä ja etsitään id:n avulla oikeat UI-elementit
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi_message);
@@ -30,13 +40,17 @@ public class DisplayBMIActivity extends AppCompatActivity {
         updateUI();
     }
 
-    // BMI:n laskufunktio
+    /**
+     * Etsitään xml tiedostosta oikeat arvot ja asetetaan ne muuttujille
+     * Sitten tarkistetaan onko annettu arvo numero vai ei
+     * Jos on numero asetaan ne painoksi ja pituudeksi
+     * Jos ei palautetaan false ja sanotaan käyttäjälle, että hänen on asetettava arvot
+     * Saadun arvon perusteella laitetaan myös tekstikenttään arvoa kuvaava väri
+     */
     public void laskeBMI(View view) {
-        // Asetetaan pituudelle ja painolle arvot, jotka saadaan lukemalla tekstikentän xml:stä
         pituus = tvi.getText().toString();
         paino = tva.getText().toString();
 
-        //tarkistetaan, että kentän ei ole tyhjiä tai ettei niissä ole merkkijonoja, jonka jälkeen stringit muutetaan doubleiksi
         if (onkoNumero(pituus) == true && onkoNumero(paino) == true) {
             luokka = new BMIClass(paino, pituus);
 
@@ -44,7 +58,7 @@ public class DisplayBMIActivity extends AppCompatActivity {
             DecimalFormat df = new DecimalFormat("0.00");
             asetaTeksti = "Your BMI is: " + df.format(luokka.getBmi());
 
-            // Tarkistaan saatu arvo ja annetaan sen perusteella tekstille väri
+
             if (luokka.getBmi() >= 0 && luokka.getBmi() <= 14.9) {
                 tv.setTextColor(this.getResources().getColor(R.color.lighterblue));
                 asetaTeksti += "\nUnderweight (Severe thinness)\t";
@@ -78,19 +92,26 @@ public class DisplayBMIActivity extends AppCompatActivity {
                 asetaTeksti += "\nObese (Class III)\t";
             }
         } else {
+            tv.setTextColor(this.getResources().getColor(R.color.black));
             asetaTeksti = "Add numbers to the fields";
         }
         updateUI();
 
     }
 
-    // Asetetaan BMI-arvo tekstikenttään
+    /**
+     * Asetaan tekstikenttään, joka näyttää BMI:n jokin teksti sen perusteella mitä arvoja käyttäjä on syöttänyt
+     */
     public void updateUI() {
         tv.setText(asetaTeksti);
     }
 
 
-    //Tarkistetaan onko syötetty String numero vai ei
+    /**
+     * Metodissa tarkistetaan onko syötetty arvo numero vai ei
+     * @param string luettava arvo
+     * @return  palauttaa true tai false vastauksen perusteella
+     */
     public static boolean onkoNumero(String string) {
         float floatVal;
 
